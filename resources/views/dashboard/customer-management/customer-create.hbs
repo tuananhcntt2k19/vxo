@@ -1,0 +1,81 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row bus-schedule">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Thêm mới khách hàng</h4>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="/dashboard/customer/store" class="form-horizontal">
+                    <div class="row full-name">
+                      <label class="col-sm-2 col-form-label">Họ Tên Khách Hàng</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="fullname" autocomplete="off">
+                          <span class="bmd-help">Họ và tên của khách hàng</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row phone">
+                      <label class="col-sm-2 col-form-label">Số Điện Thoại</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="phone" autocomplete="off">
+                          <span class="bmd-help">Số điện thoại của khách hàng</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row email">
+                      <label class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="email" class="form-control" name="email" autocomplete="off">
+                          <span class="bmd-help">Địa chỉ email của khách hàng</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row car-type">
+                      <label class="col-sm-2 col-form-label">Chọn Chuyến</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="busschedule" data-width="35%">
+                          {{#each listbusschedules}}
+                          <option value="{{this._id}}">{{this.startpoint}} - {{this.endpoint}} ({{this.triptimestart}} - {{this.tripdate}})</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row picking-seat">
+                      <label class="col-sm-2 col-form-label">Chọn Ghế</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="pickedseats" autocomplete="off">
+                        <span class="bmd-help">Số ghế ngồi trên xe</span>  
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="text-left">
+                          <a href="/dashboard/customers" class="btn btn-rose">Quay Lại</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-rose">Thêm Mới</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

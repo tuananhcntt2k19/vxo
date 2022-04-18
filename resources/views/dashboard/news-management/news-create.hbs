@@ -1,0 +1,65 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row news">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Thêm mới bài viết</h4>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="/dashboard/news/store" class="form-horizontal">
+                    <div class="row title">
+                      <label class="col-sm-2 col-form-label">Tiêu đề</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="title" autocomplete="off">
+                          <span class="bmd-help">Tiêu đề bài viết</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row content">
+                      <label class="col-sm-2 col-form-label">Nội dung</label>
+                      <div class="col-sm-10">
+                          <div class="form-group">
+                              <textarea class="form-control" rows="5" name="content"></textarea>
+                              <span class="bmd-help">Nội dung bài viết</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row category">
+                      <label class="col-sm-2 col-form-label">Danh Mục</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="category">
+                          {{#each category}}
+                          <option>{{this.titlecategory}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="text-left">
+                          <a href="/dashboard/news" class="btn btn-rose">Quay Lại</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-rose">Thêm Mới</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

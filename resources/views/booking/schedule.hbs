@@ -1,0 +1,317 @@
+{{> navbar-home}}
+<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('assets/img/examples/bg2.jpg');">
+</div>
+  <div class="main main-raised">
+    <div class="container">
+      {{#if busSchedule}}
+      <form method="POST" action="" class="form-horizontal" id="ticket-form">
+        <div class="row">
+          <div class="col-md-12 my-3">
+            <div class="card card-nav-tabs trip-schedule">
+              <h4 class="card-header card-header-info text-center">Lịch Trình Chuyến Đi</h4>
+              {{#with busSchedule.[0]}}
+                  <h4 class="card-title text-center mt-3">{{startpoint}} <i class="fa fa-arrow-circle-o-right fa-lg px-2"></i>{{endpoint}}</h4>
+                  <h5 class="text-muted text-center font-weight-bold mb-0">{{tripdate}}</h5>
+              {{/with}}
+
+              <div class="card-body">
+                <div class="col-md-12">
+                  {{#each busSchedule}}
+                  <input type="hidden" name="busschedule" value="{{this._id}}">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="text-muted text-center font-weight-bold mb-0">
+                            <span style="font-size: 1.0625rem;">{{this.triptimestart}}</span>
+                            <span class="material-icons" style="font-size: 17px;">arrow_forward</span>
+                            <span style="font-size: 1.0625rem;">{{this.triptimeend}}</span>
+                          </div>
+                          <div class="start-end text-center">
+                            <span class="badge badge-pill badge-default my-2 start-end-pill">
+                              <span>100,000 đồng </span>
+                              <span class="dots-pill"></span>
+                              <span>Ghế</span>
+                              <span class="dots-pill"></span>
+                              <span>Còn {{countSeats this.customerpickedseats this.cartype.cartype}} chỗ</span>
+                            </span>
+                            <div class="start">
+                              <span class="material-icons start-icon">radio_button_unchecked</span>
+                              <span class="text-muted start-station">{{this.startstation}}</span>
+                            </div>
+                            <div class="dots">
+                              <span class="material-icons first-dots" >more_vert</span>
+                              <span class="material-icons second-dots" style="display: block;">more_vert</span>
+                              <span class="material-icons third-dots" >more_vert</span>
+                            </div>
+                            <div class="end">
+                              <span class="material-icons end-icon">place</span>
+                              <span class="text-muted end-station">{{this.endstation}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <a class="btn btn-primary pick-ticket" data-id="{{this._id}}" href="#">Chọn</a>
+                          <div class="card card-nav-tabs seats-map" style="display: none" data-id="{{this._id}}">
+                            <h4 class="card-header card-header-info text-center">Sơ Đồ Chọn Ghế</h4>
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="pick-seat">
+                                    <div class="row">
+                                      {{seats this.cartype.cartype this.customerpickedseats this._id}} 
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row mt-3">
+                                <div class="col-md-4">
+                                  <div class="empty-seat d-flex justify-content-center align-items-center">
+                                    <i class="material-icons">weekend</i><span class="pl-2">Trống</span> 
+                                  </div> 
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="picking-seat d-flex justify-content-center align-items-center">
+                                    <i class="material-icons">weekend</i><span class="pl-2">Đang Chọn</span> 
+                                  </div> 
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="picked-seat d-flex justify-content-center align-items-center">
+                                    <i class="material-icons">weekend</i><span class="pl-2">Đã Đặt</span> 
+                                  </div> 
+                                </div>
+                              </div>
+                              <div class="row mt-4">
+                                <div class="col-md-6">
+                                  <div class="picked-seat-{{this._id}}">
+                                    <span class="text-muted font-weight-bold picked-seat-count">Ghế Đã Chọn: 0</span>
+                                    <br>
+                                    <span class="text-muted font-weight-bold picked-seat-slot" id="picked-seats-{{this._id}}">Số Ghế Đã Chọn: </span>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="total-payment-{{this._id}} text-right">
+                                    <span class="text-muted font-weight-bold">Thành Tiền</span><p class="font-weight-bold">0 đồng</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card card-nav-tabs trip-schedule">
+              <h4 class="card-header card-header-info text-center">Thông Tin Khách Hàng</h4>
+              <div class="card-body">
+                <div class="form-group bmd-form-group full-name">
+                  <label for="fullname" class="bmd-label-floating">Họ và tên</label>
+                  <input type="text" class="form-control" id="fullname" name="fullname" autocomplete="off">
+                  {{!-- <span class="bmd-help">Chúng tôi không bao giờ chia sẽ dữ liệu người dùng !</span> --}}
+                  <span class="form-message"></span>
+                </div> 
+                <div class="form-group bmd-form-group phone">
+                  <label for="phone" class="bmd-label-floating">Số điện thoại</label>
+                  <input type="text" class="form-control" id="phone" name="phone" autocomplete="off">
+                  {{!-- <span class="bmd-help">Chúng tôi không bao giờ chia sẽ dữ liệu người dùng !</span> --}}
+                  <span class="form-message"></span>
+                </div> 
+                <div class="form-group bmd-form-group email">
+                  <label for="phone" class="bmd-label-floating">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" autocomplete="off">
+                  {{!-- <span class="bmd-help">Chúng tôi không bao giờ chia sẽ dữ liệu người dùng !</span> --}}
+                  <span class="form-message"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-nav-tabs">
+              <h4 class="card-header card-header-info text-center">Thanh Toán</h4>
+              <div class="card-body">
+                <div class="row">
+                  {{!-- <div class="col-md-12">
+                    <p class="text-muted font-weight-bold">Quý khách vui lòng mang email có chứa mã vé đến văn phòng để đổi vé lên xe trước 
+                  giờ xuất phát ít nhất 30 phút</p>
+                    <p class="text-muted font-weight-bold">Thông tin khách hàng phải chính xác, nếu không sẽ không thể lên xe !</p>
+                  </div> --}}
+                  <div class="col-md-12 text-center">
+                    <button class="btn btn-info btn-lg payment-inter">
+                      <i class="fa fa-cc-visa px-2"></i>
+                      <i class="fa fa-cc-mastercard"></i>
+                      <i class="fa fa-cc-jcb px-2"></i>
+                      <p class="pt-4 mb-0">Thẻ Quốc Tế / ATM</p>
+                    </button>
+                  </div>
+                  {{!-- <div class="col-md-12 text-center">
+                    <button class="btn btn-info btn-lg payment-inter">
+                      <i class="fa fa-money px-2"></i>
+                      <p class="pt-4">COD Tiền Mặt</p>
+                    </button>
+                  </div> --}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-right my-3">
+            <button  class="btn btn-info" id="btn-submit">Tiếp Tục</button>
+          </div>
+        </div>
+      </form>
+      {{else}}
+      <div class="row mb-4">
+        <div class="col-md-12 text-center">
+          <h2 class="title">Không tìm thấy chuyến</h2>
+          <img src="assets/img/notfound.png" alt="" class="img-fluid">
+          <p class="text-muted" style="margin-top: 2.142rem;">Hiện tại VeXe.Online chưa có thông tin về lịch trình xe này.
+          Xin quý khách vui lòng chọn ngày đi khác hoặc tuyến đường khác.</p>
+          <a href="/" class="btn btn-primary btn-lg mb-4 btn-search-ticket">Quay Lại</a>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+  <footer class="footer footer-default">
+    <div class="container">
+      <div class="copyright text-center">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>, made with <i class="material-icons">favorite</i> by
+        <a href="#" target="_blank">VeXe.Online</a>
+      </div>
+    </div>
+  </footer>
+<!--	Plugin for validate -->
+<script src="/assets/js/plugins/validator.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let pickTicketATag = document.querySelectorAll('.pick-ticket');
+    let seatsMap = document.querySelectorAll('.seats-map');
+    let aSeatTag = document.querySelectorAll('.seat a');
+
+    let count = 0;
+    let seats = [];
+    let pickedSeats;
+    let prevDataId = [];
+    let total;
+
+    let seatsMapArrDataId = [...seatsMap].map(item => item.getAttribute('data-id'));
+
+    let pickTicketATagArr = [...pickTicketATag].map((item) => {
+      let defaultClick = item.addEventListener('click', function(e) {
+        e.preventDefault()   
+        item.style.display = "none";
+        let pickTicketDataId = item.getAttribute('data-id');
+        let test = [...seatsMap].map(item => document.querySelector(`.seats-map[data-id="${pickTicketDataId}"]`));
+        test[0].style.display = 'block'
+        //console.log('prev', prevDataId)
+        prevDataId.map((item) => {
+          if(item !== pickTicketDataId) {
+            document.querySelector(`.seats-map[data-id="${item}"]`).style.display = 'none'  
+            document.querySelector(`.pick-ticket[data-id="${item}"]`).style.display = 'inline-block'  
+            let pickingSeats = document.querySelectorAll(`.picking-seat[data-id="${item}"]`);
+            [...pickingSeats].map(item => item.classList.remove('picking-seat'));
+            seats = [];
+            count = 0;
+            $(`.picked-seat-${item}`).find(`span.picked-seat-count`).text("Ghế Đã Chọn: ");
+            $(`.picked-seat-${item}`).find(`span.picked-seat-slot`).text("Số Ghế Đã Chọn: ");
+          $(`.total-payment-${item}`).find("p").text('')
+          }
+        })
+        prevDataId.push(pickTicketDataId)
+        //console.log('prev', prevDataId)
+      })  
+    })
+
+    let seatMap = [...aSeatTag].map((item) => {
+      let defaultClick = item.addEventListener('click', function(e) {
+        e.preventDefault()
+        let dataId = item.getAttribute('data-id')  
+        let getParentClass = item.parentElement;
+        //console.log(item)
+        
+        getParentClass.classList.toggle('picking-seat');
+        let picked = getParentClass.classList.contains('picking-seat')
+        let ticketMoney = 100000;
+        if(picked) {
+          count += 1;
+          $(`.picked-seat-${dataId}`).find(`span.picked-seat-count`).text("Ghế Đã Chọn: " + count);
+          total = ticketMoney * count;
+          let seatNum = $(item).find('i').attr("data-original-title").split(' ');
+          seats.push(seatNum[2]);
+          $(`.picked-seat-${dataId}`).find(`span.picked-seat-slot`).text("Số Ghế Đã Chọn: " + seats);
+          $(`.total-payment-${dataId}`).find("p").text(total.toLocaleString() + " đồng")
+        }
+        else {
+          count -= 1;
+          $(`.picked-seat-${dataId}`).find(`span.picked-seat-count`).text("Ghế Đã Chọn: " + count);
+          let value = $(`.total-payment-${dataId}`).find("p").text();
+          let removeComma = value.replace(/,/g, "");
+          total = parseInt(removeComma) - ticketMoney;
+          let seatNum = $(item).find("i").attr("data-original-title").split(' ');
+          let index = seats.indexOf(seatNum[2])
+          if(index > - 1) {
+            seats.splice(index, 1);
+          }
+          $(`.picked-seat-${dataId}`).find(`span.picked-seat-slot`).text("Số Ghế Đã Chọn: " + seats);
+          $(`.total-payment-${dataId}`).find("p").text(total.toLocaleString() + " đồng")
+        }
+        pickedSeats = document.getElementById(`picked-seats-${dataId}`).textContent.split(' ');
+
+        // Validate Form
+        Validator({
+          form: '#ticket-form',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+            Validator.isRequired('#fullname', 'Vui lòng nhập đầy đủ họ tên !'),
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email'),
+            Validator.isRequired('#phone'),
+            Validator.isPhone('#phone'),
+          ],
+          onSubmit: function(data) {
+            let {fullname, email, phone}= data
+            let formData = {
+              busschedule: dataId,
+              fullname,
+              email,
+              phone,
+              pickedseats: pickedSeats[4],
+              //time: document.querySelector('.bootstrap-select button').title
+            }
+
+            $.ajax({
+              type: 'POST',
+              contentType : "application/json",
+              url: "http://127.0.0.1:3000/payment",
+              data: JSON.stringify(formData),
+              success: function(data) {
+                if(data.status === "Success") {
+                  window.location = data.redirect;
+                }
+              },
+              error: function(error) {
+                console.log(error)
+              }
+            }) 
+          }
+        })
+      })
+    })
+    
+    // Handle pick-ticket button click
+
+  })
+</script>

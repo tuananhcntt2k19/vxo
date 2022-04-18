@@ -1,0 +1,84 @@
+<nav
+  class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg"
+  color-on-scroll="100"
+  id="sectionsNav"
+>
+  <div class="container">
+    <div class="navbar-translate">
+      <a class="navbar-brand" href="#">
+        VEXEONLINE
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div
+  class="page-header header-filter"
+  style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+        {{#if err}}
+          {{#each err}}
+            <div class="alert alert-danger">{{this}}</div>
+          {{/each}}
+        {{/if}}
+        <form class="form" method="POST">
+          <div class="card card-login card-hidden">
+            <div class="card-header card-header-primary text-center">
+              <h4 class="card-title">Trang Quản Lí</h4>
+            </div>
+            <div class="card-body">
+              <span class="bmd-form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">email</i>
+                    </span>
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Email"
+                    autocomplete="off"
+                  />
+                </div>
+              </span>
+              <span class="bmd-form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Mật khẩu"
+                  />
+                </div>
+              </span>
+            </div>
+            <div class="card-footer justify-content-center">
+              <button class="btn btn-primary">Đăng Nhập</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

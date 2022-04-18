@@ -1,0 +1,87 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row news">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Thêm mới loại xe</h4>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="/dashboard/car/store" class="form-horizontal">
+                    <div class="row car-type">
+                      <label class="col-sm-2 col-form-label">Loại Xe</label>
+                      <div class="col-sm-10">
+                        {{!-- <div class="form-group">
+                          <input type="text" class="form-control" name="cartype" autocomplete="off">
+                          <span class="bmd-help">Số chỗ ngồi trên xe (4 chỗ, 7 chỗ, ...)</span>
+                        </div> --}}
+                        <select class="selectpicker" data-style="btn-rose" name="cartype" data-width="35%">
+                          <option value="4">4 chỗ</option>
+                          <option value="5">5 chỗ</option>
+                          <option value="7">7 chỗ</option>
+                          <option value="16">16 chỗ</option>
+                          <option value="29">29 chỗ</option>
+                          <option value="30">30 chỗ</option>
+                          <option value="35">35 chỗ</option>
+                          <option value="45">45 chỗ</option>
+                          <option value="47">47 chỗ</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row licsence-plates">
+                      <label class="col-sm-2 col-form-label">Biển số xe</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="licsenceplates" autocomplete="off">
+                          <span class="bmd-help">Biển số đăng ký trên xe</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row car-owner">
+                      <label class="col-sm-2 col-form-label">Tên chủ xe</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="carowner" autocomplete="off">
+                          <span class="bmd-help">Thông tin tên chủ sỡ hữu xe</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row car-account">
+                      <label class="col-sm-2 col-form-label">Tài khoản quản lí</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="user" data-width="35%">
+                          {{#each userAll}}
+                            {{#ifCond this.role '===' 2}}
+                              <option value="{{this._id}}">{{this.username}}</option>
+                            {{/ifCond}}
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="text-left">
+                          <a href="/dashboard/car" class="btn btn-rose">Quay Lại</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-rose">Thêm Mới</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

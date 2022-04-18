@@ -1,0 +1,119 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row bus-schedule">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Cập nhật lịch trình xe</h4>
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <form method="POST" action="/dashboard/bus-schedule/{{busschdule._id}}?_method=PUT" class="form-horizontal">
+                    <div class="row start-point">
+                      <label class="col-sm-2 col-form-label">Điểm Đi</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="startpoint">
+                          <option>{{busschdule.startpoint}}</option>
+                          {{#each startend}}
+                          <option>{{this.point}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row end-point">
+                      <label class="col-sm-2 col-form-label">Điểm Đến</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="endpoint">
+                          <option>{{busschdule.endpoint}}</option>
+                          {{#each startend}}
+                          <option>{{this.point}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row start-station">
+                      <label class="col-sm-2 col-form-label">Điểm Đón</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="startstation">
+                          <option>{{busschdule.startstation}}</option>
+                          {{#each station}}
+                          <option>{{this.point}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row end-station">
+                      <label class="col-sm-2 col-form-label">Điểm Trả</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="endstation">
+                          <option>{{busschdule.endstation}}</option>
+                          {{#each station}}
+                          <option>{{this.point}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row trip-time-start">
+                      <label class="col-sm-2 col-form-label">Giờ Khởi Hành</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control timepicker" name="triptimestart" required>
+                          <span class="bmd-help">Thời gian của chuyến xe khởi hành tại bến</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row trip-time-end">
+                      <label class="col-sm-2 col-form-label">Giờ Đến</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control timepicker" name="triptimeend" required>
+                          <span class="bmd-help">Thời gian của chuyến xe khởi hành đến bến</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row trip-date">
+                      <label class="col-sm-2 col-form-label">Ngày Khởi Hành</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control datepicker" name="tripdate" required>
+                          <span class="bmd-help">Ngày của chuyến xe khởi hành</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row car-type">
+                      <label class="col-sm-2 col-form-label">Loại Xe</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="cartype">
+                          <option value="{{car._id}}">{{car.cartype}} - {{car.licsenceplates}}</option>
+                          {{#each listcars}}
+                          <option value="{{this._id}}">{{this.cartype}} - {{this.licsenceplates}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="text-left">
+                          <a href="/dashboard/bus-schedule" class="btn btn-rose">Quay Lại</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-rose">Cập Nhật</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

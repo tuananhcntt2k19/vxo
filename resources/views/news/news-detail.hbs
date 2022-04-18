@@ -1,0 +1,70 @@
+{{> navbar-home}}
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/bg5.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+            <h4 class="titile">{{newsDetail.category}}</h4>
+            <h1 class="title">{{newsDetail.title}}</h1>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="section section-text">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <p>{{newsDetail.content}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="section section-blog-info">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <a href="#pablo" class="btn btn-google btn-round float-right">
+                                <i class="fa fa-google"></i> 232
+                    </a>
+                    <a href="#pablo" class="btn btn-twitter btn-round float-right mx-2">
+                        <i class="fa fa-twitter"></i> 910
+                    </a>
+                    <a href="#pablo" class="btn btn-facebook btn-round float-right">
+                        <i class="fa fa-facebook-square"></i> 872
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="title text-center">BẠN CÓ THỂ QUAN TÂM</h2>
+                <br>
+                <div class="row">
+                    {{#each news}}
+                    <div class="col-md-4">
+                        <div class="card card-blog">
+                            <div class="card-header card-header-image">
+                                <a href="/news/{{this.slug}}">
+                                <img class="img img-raised" src="../assets/img/examples/blog6.jpg">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="category text-info text-center mt-2">{{this.category}}</h6>
+                                <h4 class="card-title">
+                                <a href="/news/{{this.slug}}">{{this.title}}</a>
+                                </h4>
+                                <p class="card-description">
+                                {{characterLimit "100" content}}
+                                <a href="/news/{{this.slug}}"> Xem thêm </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

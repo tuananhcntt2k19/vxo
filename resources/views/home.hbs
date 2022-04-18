@@ -1,0 +1,125 @@
+{{> navbar-home}}
+<div class="page-header header-filter" data-parallax="true">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="title">Hệ Thống Bán Vé Xe Khách Online</h2>
+      </div>
+      <div class="col-md-12">
+        <form action="/search-ticket" method="" class="book-ticket">
+          <div class="form-row d-flex justify-content-center">
+            <div class="form-group col-md-3 start-point text-center">
+              <div class="form-input-icon">
+                <i class="fa fa-map-marker"></i>
+              </div>
+              <select class="selectpicker mt-4" data-live-search="true" title="Chọn điểm đi" data-style="btn-select" name="startpoint">
+                {{#each startend}}
+                <option data-tokens="{{this.point}}">{{this.point}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group col-md-3 end-point text-center">
+              <div class="form-input-icon">
+                <i class="fa fa-map-marker"></i>
+              </div>
+              <select class="selectpicker mt-4" data-live-search="true" title="Chọn điểm đến" data-style="btn-select" name="endpoint">
+                {{#each startend}}
+                <option data-tokens="{{this.point}}">{{this.point}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group input-group col-md-3 text-center pick-date">
+              <label class="bmd-label-floating ml-4">Chọn thời gian</label>
+              <span class="form-input-icon">
+                <span class="fa fa-calendar"></span>
+              </span>
+              <input  type="text" class="form-control datepicker ml-4" name="tripdate" value=""/>
+            </div>
+            <div class="col-md-3 align-self-center text-center">
+              <button class="btn btn-primary btn-lg btn-search-ticket"><i class="fa fa-search mr-2"></i>Tìm vé</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main main-raised">
+  <div class="container">
+    <div class="section text-center news">
+      <h2 class="title">Tin Tức Cập Nhật</h2>
+      <h4>Tin tức mới nhất về VeXeOnline và thông tin các tuyến xe</h4>
+      <div class="team">
+        <div class="row">
+          {{#each news}}
+          <div class="col-md-4">
+            <div class="card card-blog" style="height: 365px">
+              <div class="card-header card-header-image">
+                <a href="#pablo">
+                  <img class="img img-raised" src="assets/img/bg9.jpg">
+                </a>
+              <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/blog7.jpg&quot;); opacity: 1;"></div></div>
+              <div class="card-body">
+                <h6 class="category text-danger mt-2"> {{this.category}} </h6>
+                <h4 class="card-title">
+                  <a href="/news/{{this.slug}}">{{this.title}}</a>
+                </h4>
+                <p class="card-description">{{characterLimit "100" content}}<a class="pl-2" href="/news/{{this.slug}}">Xem thêm</a></p>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="section text-center intro">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="title">VeXe.Online - Chất Lượng Hàng Đầu</h2>
+        </div>
+      </div>
+      <div class="features">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="info">
+              <div class="icon icon-info">
+                <i class="material-icons">person</i>
+              </div>
+              <h4 class="info-title">Khách Hàng</h4>
+              <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info">
+              <div class="icon icon-success">
+                <i class="material-icons">directions_bus</i>
+              </div>
+              <h4 class="info-title">Đầu Xe</h4>
+              <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info">
+              <div class="icon icon-warning">
+                <i class="material-icons">map</i>
+              </div>
+              <h4 class="info-title">Tuyến Đường</h4>
+              <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer footer-default">
+  <div class="container">
+    <div class="copyright text-center">
+      &copy;
+      <script>
+        document.write(new Date().getFullYear())
+      </script>, made with <i class="material-icons">favorite</i> by
+      <a href="#" target="_blank">VeXe.Online</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,229 @@
+/* HEADER SECTION */
+
+.page-header {
+  background-image: url("../../assets/img/banner.jpg");
+}
+
+/* BOOKING SECTION  */
+
+.form-input-icon {
+  position: absolute;
+  top: 35px;
+}
+
+/* .book-ticket .swap::after {
+    content: '\f0ec';
+    font-family: FontAwesome;
+    position: relative;
+    top: 30px;
+    width: 35px;
+    height: 35px;
+    background-color: #ffffff;
+    color: #ef5222;
+    border-radius: 50%;
+    padding: 5px 9px;
+    transition: .3s;
+    transform: rotate(0deg);
+    display: inline-block;
+}
+.book-ticket .swap {
+    transition: .3s;
+}
+
+.book-ticket .swap:hover::after{
+    transform: rotate(180deg);
+    cursor: pointer;
+} */
+
+.book-ticket .btn-search-ticket {
+  background-color: #ef5222;
+  border-color: #ef5222;
+}
+
+.book-ticket .btn-search-ticket:hover {
+  background-color: rgb(239 82 34/0.8);
+}
+
+.book-ticket .btn-select {
+  background-color: #ef5222;
+  border-color: #ef5222;
+}
+
+.book-ticket .btn-select:hover {
+  background-color: rgb(239 82 34/0.8);
+}
+
+.book-ticket .btn-select:active {
+  background-color: rgb(239 82 34/0.8);
+}
+.book-ticket .show > .btn.dropdown-toggle {
+  background-color: #ef5222;
+  border-color: #ef5222;
+}
+
+.book-ticket .dropdown-menu li a:hover {
+  background-color: #ef5222;
+  border-color: #ef5222;
+}
+
+.book-ticket .form-control,
+.is-focused .form-control {
+  background-image: linear-gradient(
+      to top,
+      #ff9800 2px,
+      rgba(156, 39, 176, 0) 2px
+    ),
+    linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+}
+
+.book-ticket .pick-date input {
+  color: white;
+}
+
+/* NEWS SECTION */
+
+.news,
+.intro {
+  padding: 50px 0;
+}
+
+/* FOOTER SECTION */
+
+footer {
+  background-image: url("../img/footer.png");
+  background-size: contain;
+}
+
+/* BOOKING INFO */
+
+.seats-map .pick-seat i {
+  font-size: 60px;
+}
+
+.seats-map .pick-seat a {
+  color: #b9e1ff;
+}
+
+/* Adding cursor just works: */
+.seats-map .picked-seat a[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Makes link non-clickable: */
+.seats-map .picked-seat a[aria-disabled="true"]:active {
+  pointer-events: none;
+}
+
+.seats-map .empty-seat i {
+  color: #b9e1ff;
+  cursor: pointer;
+}
+
+.seats-map .picked-seat i {
+  color: #aeacac;
+}
+
+.seats-map .picking-seat i {
+  color: #fdb59d;
+  cursor: pointer;
+}
+
+/* PAYMENT SECTION */
+
+.payment-inter i {
+  font-size: 3em !important;
+}
+
+/* DASHBOARD STATICS SECTION */
+.statics .card-header-warning,
+.statics .card-header-rose,
+.statics .card-header-success,
+.statics .card-header-info,
+.bus-schedule .card-header-rose,
+.news .card-header-rose {
+  box-shadow: unset;
+}
+
+/* BUSSCHEDULE SECTION */
+.bus-schedule .card-body .bmd-form-group,
+.news .card-body .bmd-form-group,
+.update-profile .card-body .bmd-form-group {
+  padding-top: 0px;
+}
+
+/* BUS DETAIL SECTION */
+.bus-detail .card-header-rose {
+  box-shadow: unset;
+}
+
+/* NAVBAR */
+.wrapper .nav-custom {
+  color: unset;
+}
+
+/* BOOKING SECTION */
+.start-end {
+  position: relative;
+}
+
+.start-end .start {
+  margin-bottom: 14px;
+  display: flex;
+  font-size: 15px;
+}
+
+.start-end .end {
+  margin-top: 52px;
+  display: flex;
+  font-size: 15px;
+}
+
+.dots {
+  position: absolute;
+}
+
+.start .start-icon {
+  color: green;
+}
+
+.start .start-station {
+  padding: 0 3px;
+}
+
+.end .end-icon {
+  color: #ef5222;
+}
+
+.end .end-station {
+  padding: 0 3px;
+}
+
+.dots .first-dots {
+  display: block;
+  position: absolute;
+  top: -18px;
+}
+
+.dots .second-dots {
+  display: block;
+}
+
+.dots .third-dots {
+  position: absolute;
+  top: 18px;
+  display: block;
+}
+
+.start-end-pill {
+  font-size: 12px;
+}
+
+.dots-pill {
+  display: inline-block;
+  width: 8px;
+  border-radius: 6px;
+  height: 8px;
+  opacity: 0.3;
+  margin: 0px 8px;
+  background-color: #000;
+}

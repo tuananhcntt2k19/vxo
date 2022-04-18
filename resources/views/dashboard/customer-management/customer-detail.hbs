@@ -1,0 +1,133 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row bus-detail">
+              <div class="col-md-6 schedule-info">
+                <div class="card">
+                    <div class="card-header card-header-text card-header-rose">
+                        <div class="card-text">
+                        <h4 class="card-title">Thông Tin Chuyến xe</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Điểm Đi:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{busSchedule.startpoint}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Điểm Đến:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{busSchedule.endpoint}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Điểm Đón:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{busSchedule.startstation}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Điểm Trả:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{busSchedule.endstation}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Giờ Khởi Hành:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{busSchedule.triptimestart}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Giờ Đến:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{busSchedule.triptimeend}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Ngày Khởi Hành:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{busSchedule.tripdate}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Loại Xe:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{carType.cartype}} chỗ</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+              </div>
+              <div class="col-md-6">
+                <div class="card vehicle-info">
+                    <div class="card-header card-header-text card-header-rose">
+                        <div class="card-text">
+                        <h4 class="card-title">Thông Tin Khách Hàng</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Tên Khách Hàng:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{customer.fullname}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Số Điện Thoại:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{customer.phone}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Email:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{customer.email}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Số Ghế Đã Đặt:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{customer.pickedseats}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Gửi Lại vé:</span></div>
+                                <div class="col-md-8"><span class="text-muted"><button class="btn btn-rose">Gửi Lại Vé</button></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card record-info">
+                    <div class="card-header card-header-text card-header-rose">
+                        <div class="card-text">
+                        <h4 class="card-title">Thông Tin Bảng Ghi</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Thời giao tạo:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{customer.createdAt}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Thời gian cập nhật:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{customer.updatedAt}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,190 @@
+<div
+  class="sidebar"
+  data-color="rose"
+  data-background-color="black"
+  data-image="/assets/img/sidebar-1.jpg"
+>
+  <div class="logo text-center">
+    <a href="/" class="simple-text logo-normal">
+      <i class="fa fa-bus pr-2"></i>VeXeOnline
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <div class="user">
+      <div class="photo">
+        <img src="/assets/img/faces/avatar.jpg" />
+      </div>
+      <div class="user-info">
+        <a data-toggle="collapse" href="#collapseExample" class="username">
+          <span>
+            {{user.username}}
+            <b class="caret"></b>
+          </span>
+        </a>
+        <div class="collapse" id="collapseExample">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/profile/{{user._id}}/detail">
+                <span class="sidebar-mini">
+                  <i class="fa fa-id-card-o"></i>
+                </span>
+                <span class="sidebar-normal"> Trang Cá Nhân </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/logout">
+                <span class="sidebar-mini">
+                  <i class="fa fa-power-off"></i>
+                </span>
+                <span class="sidebar-normal"> Thoát </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="nav">
+      {{#if (eq user.role 0)}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard">
+            <i class="material-icons">dashboard</i>
+            <p> Trang Chủ </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#services">
+            <i class="fa fa-calendar-check-o"></i>
+            <p>
+              Quản Lí Dịch Vụ
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="services">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/bus-schedule">
+                  <span class="sidebar-normal ml-4">
+                    Quản Lí Lịch Trình Xe
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/car">
+                  <span class="sidebar-normal ml-4">
+                    Quản Lí Phương Tiện
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/startend">
+                  <span class="sidebar-normal ml-4">
+                    Quản Lí Điểm Đi - Đến
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/station">
+                  <span class="sidebar-normal ml-4">
+                    Quản Lí Điểm Đón - Trả
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/news">
+            <i class="fa fa-newspaper-o"></i>
+            <p> Quản Lí Tin Tức </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/customers">
+            <i class="fa fa-users"></i>
+            <p> Quản Lí Khách Hàng </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#category">
+            <i class="fa fa-bars"></i>
+            <p>
+              Quản Lí Danh Mục
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="category">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/category">
+                  <span class="sidebar-normal ml-4">
+                    Quản Lí Danh Mục Tin Tức
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/accounts">
+            <i class="fa fa-newspaper-o"></i>
+            <p> Quản Lí Tài Khoản </p>
+          </a>
+        </li>
+
+      {{else if (eq user.role 2)}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard">
+            <i class="material-icons">dashboard</i>
+            <p> Trang Chủ </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#services">
+            <i class="fa fa-calendar-check-o"></i>
+            <p>
+              Quản Lí Dịch Vụ
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="services">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/bus-schedule">
+                  <span class="sidebar-normal ml-4">
+                    Quản Lí Lịch Trình Xe
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard/car">
+                  <span class="sidebar-normal ml-4">
+                    Quản Lí Phương Tiện
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      {{else}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard">
+            <i class="material-icons">dashboard</i>
+            <p> Trang Chủ </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/news">
+            <i class="fa fa-newspaper-o"></i>
+            <p> Quản Lí Tin Tức </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/customers">
+            <i class="fa fa-users"></i>
+            <p> Quản Lí Khách Hàng </p>
+          </a>
+        </li>
+      {{/if}}
+    </ul>
+  </div>
+</div>

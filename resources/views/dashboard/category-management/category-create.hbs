@@ -1,0 +1,77 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row news">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Thêm mới danh mục</h4>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="" class="form-horizontal" id="category-form">
+                    <div class="row title-category">
+                      <label class="col-sm-2 col-form-label">Tên Danh Mục</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="titlecategory" name="titlecategory" autocomplete="off">
+                          <span class="form-message"></span>
+                          {{!-- <span class="bmd-help">Tiêu đề của danh mục</span> --}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="text-left">
+                          <a href="/dashboard/category" class="btn btn-rose">Quay Lại</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-rose">Thêm Mới</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--	Plugin for validate -->
+<script src="/assets/js/plugins/validator.js"></script>"
+<script>
+    Validator({
+      form: '#category-form',
+      formGroupSelector: '.form-group',
+      errorSelector: '.form-message',
+      rules: [
+        Validator.isRequired('#titlecategory', 'Vui lòng nhập đầy đủ thông tin !'),
+      ],
+      onSubmit: function(data) {
+        console.log(data)
+        $.ajax({
+          type : "POST",
+          contentType : "application/json",
+          url: "http://127.0.0.1:3000/dashboard/category/store",
+          data: JSON.stringify(data),
+          success: function(data) {
+            //location.href = "http://127.0.0.1:3000/dashboard/category"
+            if (data.status === "Success") {
+              window.location = data.redirect;
+            }
+          },
+          error: function(error) {
+            console.log(error)
+          }
+        })
+      }
+    })
+</script>

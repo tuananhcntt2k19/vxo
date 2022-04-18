@@ -1,0 +1,74 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row bus-schedule">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-text">
+                  <div class="card-text">
+                    <h4 class="card-title">Thêm mới tài khoản</h4>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="/dashboard/accounts/store" class="form-horizontal">
+                    <div class="row full-name">
+                      <label class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="email" class="form-control" name="email" autocomplete="off">
+                          <span class="bmd-help">Địa chỉ email của tài khoản</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row phone">
+                      <label class="col-sm-2 col-form-label">Tên đăng nhập</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="username" autocomplete="off">
+                          <span class="bmd-help">Tên đăng nhập của tài khoản</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row email">
+                      <label class="col-sm-2 col-form-label">Mật khẩu</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="password" class="form-control" name="password" autocomplete="off">
+                          <span class="bmd-help">Mật khẩu của tài khoản</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row car-type mt-1">
+                      <label class="col-sm-2 col-form-label">Chọn Quyền</label>
+                      <div class="col-sm-10">
+                        <select class="selectpicker" data-style="btn-rose" name="role" data-width="35%">
+                          <option value="0">Administrator</option>
+                          <option value="1">Nhân Viên</option>
+                          <option value="2">Nhà Xe</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="text-left">
+                          <a href="/dashboard/accounts" class="btn btn-rose">Quay Lại</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-rose">Thêm Mới</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

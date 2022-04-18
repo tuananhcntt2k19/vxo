@@ -1,0 +1,17 @@
+trang chi tiết lịch trình xe 
+Thêm: 
+	thống kê số vé bán ra 
+	thống kê số khách
+	thống kê số tiền 
+
+trang chi tiết loại xe: 
+Thêm: 
+	thống kê xe nào đã chạy bao nhiêu chuyến ok
+	doanh thu theo ngày ok, 
+	tuần, 
+	tháng của từng loại xe
+
+trang chi tiết khách hàng: 
+Thêm: 
+	thống kê số vé khách đã mua theo ngày, tuần, tháng 
+	

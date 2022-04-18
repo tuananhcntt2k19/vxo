@@ -1,0 +1,165 @@
+{{> navbar-home}}
+<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('assets/img/examples/bg2.jpg');">
+</div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 my-3">
+          <div class="card card-nav-tabs trip-schedule">
+            <h4 class="card-header card-header-info text-center">Thông Tin Mua Vé</h4>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="title text-center">Thông tin khách hàng</h3>
+                </div>
+                <div class="col-md-6">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Họ tên:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{customer.fullname}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Số điện thoại:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{customer.phone}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Email:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{customer.email}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="title text-center">Thông tin vé</h3>
+                </div>
+                <div class="col-md-6">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Tuyến xe:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{bus.startpoint}} - {{bus.endpoint}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Điểm Đón:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{bus.startstation}}</span>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <span class="text-muted">Điểm trả:</span>
+                          </div>
+                          <div class="col-md-8">
+                            <span class="font-weight-bold">{{bus.endstation}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Thời gian:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{bus.triptimestart}} - {{bus.triptimeend}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Ngày:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{bus.tripdate}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Số ghế:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{customer.pickedseats}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <span class="text-muted">Số xe:</span>
+                      </div>
+                      <div class="col-md-8">
+                        <span class="font-weight-bold">{{car.licsenceplates}} - {{car.cartype}} chỗ</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 my-3">
+          <div class="card card-nav-tabs trip-schedule">
+            <h4 class="card-header card-header-info text-center">QR Code</h4>
+            <div class="card-body">
+              <p class="text-center font-weight-bold">Hãy lưu QR Code dưới đây thay cho vé</p>
+              <div class="row text-center">
+                <canvas id="canvas" style="margin: 0px auto;"></canvas>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+</div>
+<footer class="footer footer-default">
+  <div class="container">
+    <div class="copyright text-center">
+      &copy;
+      <script>
+        document.write(new Date().getFullYear())
+      </script>, made with <i class="material-icons">favorite</i> by
+      <a href="#" target="_blank">VeXe.Online</a>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/qrcode.js"></script>
+<script>
+  let ticket = "{{{customer._id}}} | {{{customer.fullname}}} | {{{customer.pickedseats}}} - {{{car.licsenceplates}}} | {{{bus.tripdate}}} - {{{bus.triptimestart}}} - {{{bus.triptimeend}}}"
+  let qrTicket = ticket
+  QRCode.toCanvas(document.getElementById('canvas'), qrTicket, function (error) {
+    if (error) console.error(error)
+    console.log('success!');
+  })
+</script>

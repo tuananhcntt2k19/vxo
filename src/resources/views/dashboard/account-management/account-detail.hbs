@@ -1,0 +1,119 @@
+<div class="wrapper">
+    {{> sidebar span= user.username}}
+    <div class="main-panel">
+      {{> navbar}}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row bus-detail">
+              <div class="col-md-6 profile-info">
+                <div class="card">
+                    <div class="card-header card-header-text card-header-rose">
+                        <div class="card-text">
+                        <h4 class="card-title">Thông Tin Tài Khoản</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Email:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{userDetail.email}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Họ và tên:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{userDetail.username}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Lần đăng nhập cuối:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{userDetail.lastlogin}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+              </div>
+              <div class="col-md-6">
+                <div class="card update-profile">
+                    <div class="card-header card-header-text card-header-rose">
+                        <div class="card-text">
+                        <h4 class="card-title">Cập Nhật Thông Tin Tài Khoản</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/dashboard/profile/{{userDetail._id}}?_method=PUT" class="form-horizontal">
+                            <div class="row user-name">
+                                <label class="col-sm-3 col-form-label">Họ và tên</label>
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                    <input type="text" class="form-control" name="username" value="" autocomplete="off">
+                                    <span class="bmd-help">Tên của tài khoản</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row new-password">
+                                <label class="col-sm-3 col-form-label">Mật khẩu mới</label>
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                    <input type="password" class="form-control" name="repassword" value="" autocomplete="off">
+                                    <span class="bmd-help">Mật khẩu của tài khoản (Nên bao gồm chữ in hoa, in thường, kí tự và số)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row re-password">
+                                <label class="col-sm-3 col-form-label">Nhập lại mật khẩu</label>
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                    <input type="password" class="form-control" name="repassword" value="" autocomplete="off">
+                                    <span class="bmd-help">Mật khẩu của tài khoản (Nên bao gồm chữ in hoa, in thường, kí tự và số)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row role">
+                                <label class="col-sm-3 col-form-label">Quyền</label>
+                                <div class="col-sm-9">
+                                   <select class="selectpicker" data-style="btn-rose" name="role" data-width="45%">
+                                    <option value="0">Administrator</option>
+                                    <option value="1">Nhân Viên</option>
+                                    <option value="2">Phụ Xe</option>
+                                   </select>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="text-right">
+                                <button type="submit" class="btn btn-rose">Cập Nhật</button>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card record-info">
+                    <div class="card-header card-header-text card-header-rose">
+                        <div class="card-text">
+                        <h4 class="card-title">Thông Tin Bảng Ghi</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Thời giao tạo:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{userDetail.createdAt}}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4"><span class="font-weight-bold">Thời gian cập nhật:</span></div>
+                                <div class="col-md-8"><span class="text-muted">{{userDetail.updatedAt}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -164,6 +164,6 @@ const route = require("./routes");
 const { count } = require("console");
 route(app);
 
-app.listen(port, () =>
+app.listen(process.env.PORT || port, () =>
   console.log(`Server listening at http://localhost:${port}`)
 );

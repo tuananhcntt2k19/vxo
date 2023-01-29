@@ -25,11 +25,16 @@
                     </div>
                     <div class="row content">
                       <label class="col-sm-2 col-form-label">Nội dung</label>
-                      <div class="col-sm-10">
+                      {{!-- <div class="col-sm-10">
                           <div class="form-group">
                               <textarea class="form-control" rows="5" name="content"></textarea>
                               <span class="bmd-help">Nội dung bài viết</span>
                           </div>
+                      </div> --}}
+                      <div class="col-sm-10">
+                        <textarea name="content" id="editor">
+                          &lt;p&gt;This is some sample content.&lt;/p&gt;
+                        </textarea> 
                       </div>
                     </div>
                     <div class="row category">
@@ -63,3 +68,4 @@
       </div>
     </div>
 </div>
+

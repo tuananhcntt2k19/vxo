@@ -28,10 +28,10 @@
                             <span style="font-size: 1.0625rem;">{{this.triptimeend}}</span>
                           </div>
                           <div class="start-end text-center">
-                            <span class="badge badge-pill badge-default my-2 start-end-pill">
+                            <span class="badge badge-pill badge-default my-2 start-end-pill data-{{this._id}}">
                               <span>100,000 đồng </span>
                               <span class="dots-pill"></span>
-                              <span>Ghế</span>
+                              <span car-data-id="{{this.cartype._id}}">{{this.cartype.licsenceplates}} ({{this.cartype.carowner}})</span>
                               <span class="dots-pill"></span>
                               <span>Còn {{countSeats this.customerpickedseats this.cartype.cartype}} chỗ</span>
                             </span>
@@ -51,7 +51,12 @@
                           </div>
                         </div>
                         <div class="col-md-6">
-                          <a class="btn btn-primary pick-ticket" data-id="{{this._id}}" href="#">Chọn</a>
+                          <a 
+                            class="btn btn-primary pick-ticket" 
+                            data-id="{{this._id}}" href="#" 
+                            style="background-color: #ef5222; border-color: #ef5222;">
+                            Chọn
+                          </a>
                           <div class="card card-nav-tabs seats-map" style="display: none" data-id="{{this._id}}">
                             <h4 class="card-header card-header-info text-center">Sơ Đồ Chọn Ghế</h4>
                             <div class="card-body">
@@ -91,7 +96,7 @@
                                 </div>
                                 <div class="col-md-6">
                                   <div class="total-payment-{{this._id}} text-right">
-                                    <span class="text-muted font-weight-bold">Thành Tiền</span><p class="font-weight-bold">0 đồng</p>
+                                    <span class="text-muted font-weight-bold">Thành Tiền</span><p class="font-weight-bold" id="amount-{{this._id}}">0 đồng</p>
                                   </div>
                                 </div>
                               </div>
@@ -144,12 +149,13 @@
                     <p class="text-muted font-weight-bold">Thông tin khách hàng phải chính xác, nếu không sẽ không thể lên xe !</p>
                   </div> --}}
                   <div class="col-md-12 text-center">
-                    <button class="btn btn-info btn-lg payment-inter">
+                    {{!-- <button class="btn btn-info btn-lg payment-inter">
                       <i class="fa fa-cc-visa px-2"></i>
                       <i class="fa fa-cc-mastercard"></i>
                       <i class="fa fa-cc-jcb px-2"></i>
                       <p class="pt-4 mb-0">Thẻ Quốc Tế / ATM</p>
-                    </button>
+                    </button> --}}
+                    <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" style="height: 80px;">
                   </div>
                   {{!-- <div class="col-md-12 text-center">
                     <button class="btn btn-info btn-lg payment-inter">
@@ -205,8 +211,10 @@
     let pickedSeats;
     let prevDataId = [];
     let total;
+    let amount;
+    let carDataId;
 
-    let seatsMapArrDataId = [...seatsMap].map(item => item.getAttribute('data-id'));
+    //let seatsMapArrDataId = [...seatsMap].map(item => item.getAttribute('data-id'));
 
     let pickTicketATagArr = [...pickTicketATag].map((item) => {
       let defaultClick = item.addEventListener('click', function(e) {
@@ -214,7 +222,13 @@
         item.style.display = "none";
         let pickTicketDataId = item.getAttribute('data-id');
         let test = [...seatsMap].map(item => document.querySelector(`.seats-map[data-id="${pickTicketDataId}"]`));
-        test[0].style.display = 'block'
+        test[0].style.display = 'block';
+        //console.log(pickTicketDataId)
+        let busScheduleDataId = document.querySelector(`.data-${pickTicketDataId}`);
+        //console.log(busScheduleDataId)
+        let carElement = busScheduleDataId.querySelector('.start-end-pill span[car-data-id]')
+        carDataId = carElement.getAttribute('car-data-id');
+        //console.log(carDataId)
         //console.log('prev', prevDataId)
         prevDataId.map((item) => {
           if(item !== pickTicketDataId) {
@@ -226,7 +240,7 @@
             count = 0;
             $(`.picked-seat-${item}`).find(`span.picked-seat-count`).text("Ghế Đã Chọn: ");
             $(`.picked-seat-${item}`).find(`span.picked-seat-slot`).text("Số Ghế Đã Chọn: ");
-          $(`.total-payment-${item}`).find("p").text('')
+            $(`.total-payment-${item}`).find("p").text('');
           }
         })
         prevDataId.push(pickTicketDataId)
@@ -268,6 +282,8 @@
           $(`.total-payment-${dataId}`).find("p").text(total.toLocaleString() + " đồng")
         }
         pickedSeats = document.getElementById(`picked-seats-${dataId}`).textContent.split(' ');
+        amount = document.getElementById(`amount-${dataId}`).textContent.split(' ');
+        //console.log(amount)
 
         // Validate Form
         Validator({
@@ -282,13 +298,15 @@
             Validator.isPhone('#phone'),
           ],
           onSubmit: function(data) {
-            let {fullname, email, phone}= data
+            let {fullname, email, phone} = data
             let formData = {
               busschedule: dataId,
               fullname,
               email,
               phone,
               pickedseats: pickedSeats[4],
+              amount: amount[0],
+              cartype: carDataId,
               //time: document.querySelector('.bootstrap-select button').title
             }
 

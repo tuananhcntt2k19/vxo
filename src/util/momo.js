@@ -1,24 +1,20 @@
 const axios = require("axios");
 
 module.exports = {
-  momoPayGate: function (orderId) {
+  momoPayGate: function (orderId, extraDataEncode, amount) {
     //https://developers.momo.vn/#/docs/en/aiov2/?id=payment-method
     //parameters
-    var partnerCode = "MOMOBDO720220418";
-    var accessKey = "UuPeFqANIOtSsITj";
-    var secretkey = "4N2LMrpO0TEUwkUQ4taI04azPTG0IbiZ";
+    var partnerCode = "MOMOG15V20211231";
+    var accessKey = "kkLisyg0elw5wmLC";
+    var secretkey = "vQr3sg9SJRw6RxRNIkO3mVrElC1ZckSu";
     var requestId = partnerCode + new Date().getTime();
     var orderId = orderId;
     var orderInfo = "pay with MoMo";
-    var redirectUrl =
-      "https://webhook.site/eca7fadc-248c-433e-bdcf-b9274b54a9bd";
-    //var ipnUrl = "http://127.0.0.1:3000/payment-finish";
-    var ipnUrl = "https://webhook.site/eca7fadc-248c-433e-bdcf-b9274b54a9bd";
-    // var ipnUrl = (redirectUrl =
-    //   "https://webhook.site/eca7fadc-248c-433e-bdcf-b9274b54a9bd");
-    var amount = "150000";
+    var redirectUrl = "http://127.0.0.1:3000/payment-finish";
+    var ipnUrl = "https://webhook.site/#!/eeec4170-624a-44df-9a1c-159637236e94";
+    var amount = amount;
     var requestType = "captureWallet";
-    var extraData = ""; //pass empty value if your merchant does not have stores
+    var extraData = extraDataEncode; //pass empty value if your merchant does not have stores
 
     //before sign HMAC SHA256 with format
     //accessKey=$accessKey&amount=$amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType

@@ -5,11 +5,10 @@ const Startend = require("../models/startend.model");
 const CustomerManagement = require("../models/customer.model");
 
 // Utils
-const { mongooseToObject } = require("../../util/mongoose");
-const { multipleMongooseToObject } = require("../../util/mongoose");
-const { mongo } = require("mongoose");
-
-const QRCode = require("qrcode");
+const {
+  mongooseToObject,
+  multipleMongooseToObject,
+} = require("../../util/mongoose");
 const { momoPayGate } = require("../../util/momo");
 
 module.exports = {
@@ -62,6 +61,79 @@ module.exports = {
     });
   },
 
+  // [POST] /dashboard/payment
+  payment: function (req, res) {
+    const customer = new CustomerManagement(req.body);
+    let { _id, busschedule, fullname, email, phone, pickedseats, cartype } =
+      customer;
+    let objData = {
+      _id: _id.toString(),
+      busschedule: busschedule.toString(),
+      fullname,
+      email,
+      phone,
+      pickedseats,
+      cartype: cartype.toString(),
+    };
+    let amountBody = req.body.amount;
+    let amount = amountBody.replace(/[, ]+/g, "");
+
+    let stringObj = JSON.stringify(objData);
+    let extraDataEncode = Buffer.from(stringObj).toString("base64");
+
+    momoPayGate(_id, extraDataEncode, amount).then((result) => {
+      res.json({ status: "Success", redirect: result });
+    });
+    // customer.save().then((result) => {
+    //   BusSchedule.updateOne(
+    //     { _id: req.body.busschedule },
+    //     {
+    //       $push: {
+    //         customers: result._id,
+    //         customerpickedseats: req.body.pickedseats,
+    //       },
+    //     },
+    //     { upsert: true }
+    //   ).then(function () {
+    //     //console.log(result._id);
+    //     //res.redirect("/dashboard/bus-schedule");
+    //     res.json({ status: "Success", redirect: `/info/${result._id}` });
+    //   });
+    // });
+  },
+
+  //
+  paymentFinish: function (req, res) {
+    //console.log(req.query);
+    let extraDataDecode = Buffer.from(req.query.extraData, "base64").toString(
+      "ascii"
+    );
+    let data = JSON.parse(`${extraDataDecode}`);
+
+    if (data._id == req.query.orderId && req.query.resultCode == 0) {
+      const customer = new CustomerManagement(data);
+      customer.save().then((result) => {
+        BusSchedule.updateOne(
+          { _id: data.busschedule },
+          {
+            $push: {
+              customers: result._id,
+              customerpickedseats: data.pickedseats,
+            },
+          },
+          { upsert: true }
+        ).then(function () {
+          //console.log(result._id);
+          //res.redirect("/dashboard/bus-schedule");
+          res.redirect(`info/${result._id}`);
+        });
+      });
+      //console.log("true");
+    } else {
+      res.redirect("back");
+    }
+  },
+
   bookingInfo: async function (req, res) {
     // CustomerManagement.find()
     //   .sort({ _id: -1 })
@@ -84,40 +156,5 @@ module.exports = {
           });
         });
     });
-  },
-
-  // [POST] /dashboard/payment
-  payment: function (req, res) {
-    const customer = new CustomerManagement(req.body);
-    let { _id, busschedule, fullname, email, phone, pickedseats } = customer;
-    //console.log("id", _id);
-    // console.log("bus", busschedule);
-    momoPayGate(_id)
-      .then((result) => {
-        res.json({ status: "Success", redirect: result });
-      })
-      .then(() => {
-        //console.log(req.body);
-      });
-    // customer.save().then((result) => {
-    //   BusSchedule.updateOne(
-    //     { _id: req.body.busschedule },
-    //     {
-    //       $push: {
-    //         customers: result._id,
-    //         customerpickedseats: req.body.pickedseats,
-    //       },
-    //     },
-    //     { upsert: true }
-    //   ).then(function () {
-    //     //console.log(result._id);
-    //     //res.redirect("/dashboard/bus-schedule");
-    //     res.json({ status: "Success", redirect: `/info/${result._id}` });
-    //   });
-    // });
-  },
-  paymentFinish: function (req, res) {
-    console.log(req);
-    console.log(res);
   },
 };

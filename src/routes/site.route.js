@@ -10,7 +10,7 @@ router.get("/search-ticket", siteController.searchTicket);
 router.post("/search-ticket/store", siteController.searchTicketStore);
 router.get("/info/:id", siteController.bookingInfo);
 router.post("/payment", siteController.payment);
-router.post("/payment-finish", siteController.paymentFinish);
-//router.get("/payment-finish", siteController.paymentFinish);
+//router.post("/payment-finish", siteController.paymentFinish);
+router.get("/payment-finish", siteController.paymentFinish);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const express = require("express");
+const dashboardController = require("../app/controllers/dashboard.controller");
 const router = express.Router();
 
 // Dashboard Controller
@@ -76,5 +77,8 @@ router.get("/accounts/create", dashBoardController.accountsCreate);
 router.post("/accounts/store", dashBoardController.accountsStore);
 router.get("/accounts/:id/detail", dashBoardController.accountsDetail);
 router.delete("/accounts/:id/force", dashBoardController.accountsForce);
+
+// Ticket Check
+router.get("/ticket-check", dashboardController.ticketCheck);
 
 module.exports = router;

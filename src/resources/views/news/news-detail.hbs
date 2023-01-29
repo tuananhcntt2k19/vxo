@@ -14,7 +14,7 @@
         <div class="section section-text">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
-                    <p>{{newsDetail.content}}</p>
+                    {{{newsDetail.content}}}
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                                 <a href="/news/{{this.slug}}">{{this.title}}</a>
                                 </h4>
                                 <p class="card-description">
-                                {{characterLimit "100" content}}
+                                {{characterLimit 100 content}}
                                 <a href="/news/{{this.slug}}"> Xem thêm </a>
                                 </p>
                             </div>
